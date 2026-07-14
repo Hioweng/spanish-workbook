@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西班牙语练习册 - 封面</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --charcoal: #2c2c2c;
+            --grey: #6b6b6b;
+            --light-grey: #e8e4db;
+            --accent: #8b3a3a;
+            --paper: #faf8f3;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Serif SC', Georgia, serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            min-height: 100vh;
+        }
+        .cover-section {
+            padding: 80px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .cover-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+        }
+        .cover-subtitle {
+            font-size: 16px;
+            color: var(--grey);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        .cover-accent {
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0 auto 40px;
+        }
+        .cover-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        .stat-box {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .stat-label {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-top: 4px;
+        }
+        .start-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.25s;
+        }
+        .start-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        .toc-section {
+            padding: 50px 40px;
+        }
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .toc-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toc-title {
+            font-size: 15px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--light-grey);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        .toc-day {
+            font-size: 14px;
+            color: var(--grey);
+            width: 50px;
+        }
+        .toc-link {
+            flex: 1;
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .toc-link:hover {
+            color: var(--accent);
+        }
+        .toc-level {
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(139,58,58,0.05);
+            padding: 2px 8px;
+        }
+        .toc-wordcount {
+            font-size: 12px;
+            color: var(--grey);
+        }
+        .footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--light-grey);
+            background: var(--cream);
+        }
+        .footer-text {
+            font-size: 12px;
+            color: var(--grey);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover-section">
+            <h1 class="cover-title">西班牙语练习册</h1>
+            <p class="cover-subtitle">从A1到B2，每天一篇，一年掌握6000词</p>
+            <div class="cover-accent"></div>
+            <div class="cover-stats">
+                <div class="stat-box">
+                    <span class="stat-number">365</span>
+                    <span class="stat-label">Días</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">6000</span>
+                    <span class="stat-label">Palabras</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">B2</span>
+                    <span class="stat-label">Nivel</span>
+                </div>
+            </div>
+            <a href="index.html" class="start-btn">开始学习</a>
+        </div>
+
+        <div class="toc-section">
+            <div class="toc-header">
+                <span class="toc-number">01</span>
+                <span class="toc-title">Contenidos</span>
+            </div>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <span class="toc-day">Day 1</span>
+                    <a href="index.html" class="toc-link">Mi primera semana en Madrid</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">11词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 2</span>
+                    <a href="day_2.html" class="toc-link">Un día típico en la escuela</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 3</span>
+                    <a href="day_3.html" class="toc-link">Compras en el mercado</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 4</span>
+                    <a href="day_4.html" class="toc-link">Un viaje a Toledo</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 5</span>
+                    <a href="day_5.html" class="toc-link">Mi familia</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 6</span>
+                    <a href="day_6.html" class="toc-link">El tiempo y el clima</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 7</span>
+                    <a href="day_7.html" class="toc-link">Pasatiempos y hobbies</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 8</span>
+                    <a href="day_8.html" class="toc-link">Restaurantes y comida</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 9</span>
+                    <a href="day_9.html" class="toc-link">Transporte en la ciudad</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+                <li class="toc-item">
+                    <span class="toc-day">Day 10</span>
+                    <a href="day_10.html" class="toc-link">Celebraciones y festivales</a>
+                    <span class="toc-level">A1+</span>
+                    <span class="toc-wordcount">12词</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">每天一篇，坚持一年，轻松达到B2水平</p>
+        </div>
+    </div>
+</body>
+</html>

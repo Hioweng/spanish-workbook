@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西班牙语练习册 - Day 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --charcoal: #2c2c2c;
+            --grey: #6b6b6b;
+            --light-grey: #e8e4db;
+            --accent: #8b3a3a;
+            --paper: #faf8f3;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Serif SC', Georgia, serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .header {
+            padding: 50px 40px 30px;
+            border-bottom: 1px solid var(--light-grey);
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+        }
+        .day-badge {
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            color: var(--grey);
+            text-transform: uppercase;
+            border: 1px solid var(--light-grey);
+            padding: 4px 12px;
+        }
+        .level-badge {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.02em; }
+        .header p { font-size: 14px; color: var(--grey); font-style: italic; }
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: var(--light-grey);
+            margin-top: 25px;
+            position: relative;
+        }
+        .progress-fill {
+            width: 0.77%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.8s ease;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -3px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .content-section {
+            padding: 40px;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .content-section:last-of-type { border-bottom: none; }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .section-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-title {
+            font-size: 15px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        .article-text {
+            font-size: 16px;
+            text-align: justify;
+            color: var(--charcoal);
+        }
+        .article-text p { margin-bottom: 18px; }
+        .article-text p:last-child { margin-bottom: 0; }
+        .vocab-list { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .vocab-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .vocab-item:last-child { border-bottom: none; }
+        .vocab-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .vocab-word { font-size: 16px; font-weight: 600; color: var(--charcoal); }
+        .vocab-pos {
+            font-size: 11px;
+            color: var(--grey);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: var(--light-grey);
+            padding: 2px 6px;
+        }
+        .vocab-pronunciation { font-size: 13px; color: var(--grey); font-style: italic; }
+        .play-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .play-btn:hover { border-color: var(--accent); background: rgba(139,58,58,0.05); }
+        .play-btn svg { width: 10px; height: 10px; fill: var(--grey); }
+        .play-btn:hover svg { fill: var(--accent); }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .option-btn {
+            padding: 12px 16px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--charcoal);
+            text-align: left;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .option-btn:hover { border-color: var(--accent); background: rgba(139,58,58,0.03); }
+        .option-btn.selected { border-color: var(--accent); background: rgba(139,58,58,0.05); }
+        .option-btn.correct { border-color: #5a7a5a; background: rgba(90,122,90,0.08); color: #4a6a4a; }
+        .option-btn.wrong { border-color: var(--accent); background: rgba(139,58,58,0.08); color: var(--accent); }
+        .option-btn:disabled { cursor: default; }
+        .translation-text {
+            font-size: 15px;
+            color: var(--grey);
+            line-height: 1.9;
+            padding-left: 20px;
+            border-left: 2px solid var(--light-grey);
+        }
+        .grammar-tips { background: var(--cream); padding: 24px; }
+        .grammar-tips h4 {
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 16px;
+        }
+        .grammar-tips ul { list-style: none; padding-left: 0; }
+        .grammar-tips li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--charcoal);
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .grammar-tips li:last-child { border-bottom: none; }
+        .grammar-tips li strong { color: var(--accent); font-weight: 600; }
+        .speaking-section { background: var(--cream); padding: 24px; }
+        .speaking-question { margin-bottom: 28px; }
+        .speaking-question:last-child { margin-bottom: 0; }
+        .question-label {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 8px;
+        }
+        .question-text {
+            font-size: 15px;
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .answer-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            color: var(--grey);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .answer-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .answer-text {
+            margin-top: 14px;
+            padding: 16px;
+            background: var(--paper);
+            border-left: 2px solid var(--accent);
+            color: var(--charcoal);
+            font-size: 14px;
+            display: none;
+        }
+        .answer-text.show { display: block; }
+        .footer {
+            padding: 30px 40px;
+            background: var(--cream);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+        .nav-buttons {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--light-grey);
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            color: var(--charcoal);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+        .nav-btn:disabled { opacity: 0.4; cursor: default; }
+        .nav-btn.next::after { content: ' →'; }
+        .nav-btn.prev::before { content: '← '; }
+        @media (max-width: 600px) {
+            body { padding: 20px 10px; }
+            .content-section { padding: 25px 20px; }
+            .header { padding: 30px 20px 20px; }
+            .options { grid-template-columns: 1fr; }
+            .footer { grid-template-columns: 1fr 1fr; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <span class="day-badge">Day 3</span>
+                <span class="level-badge">A1+</span>
+            </div>
+            <h1>Compras en el mercado</h1>
+            <p>市场购物</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <span class="section-title">Texto</span>
+            </div>
+            <div class="article-text">
+                <p>Este sábado fui al mercado con mi madre. El mercado está cerca de mi casa y es muy grande. Hay muchos puestos con frutas, verduras, carne y pescado.</p>
+<p>Primero compramos manzanas, naranjas y plátanos en el puesto de frutas. Luego fuimos al puesto de verduras y compramos lechuga, tomates y papas. Mi madre también compró carne para la cena.</p>
+<p>Después, pasamos por el puesto de embutidos y compramos jamón y queso. Al final, compramos pan fresco en la panadería. El mercado es muy animado y me gusta mucho ir allí.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <span class="section-title">Vocabulario</span>
+            </div>
+            <div class="vocab-list">
+                
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">mercado</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('mercado', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/meɾˈkaðo/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">商店</button><button class="option-btn" data-answer="correct">市场</button><button class="option-btn" data-answer="wrong">超市</button><button class="option-btn" data-answer="wrong">商场</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">puesto</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('puesto', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈpwesto/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="correct">摊位</button><button class="option-btn" data-answer="wrong">商店</button><button class="option-btn" data-answer="wrong">货架</button><button class="option-btn" data-answer="wrong">收银台</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">frutas</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('frutas', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈfɾutas/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">蔬菜</button><button class="option-btn" data-answer="correct">水果</button><button class="option-btn" data-answer="wrong">肉类</button><button class="option-btn" data-answer="wrong">鱼类</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">verduras</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('verduras', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/beɾˈduɾas/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">水果</button><button class="option-btn" data-answer="correct">蔬菜</button><button class="option-btn" data-answer="wrong">肉类</button><button class="option-btn" data-answer="wrong">鱼类</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">carne</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('carne', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈkaɾne/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">鱼</button><button class="option-btn" data-answer="correct">肉</button><button class="option-btn" data-answer="wrong">蔬菜</button><button class="option-btn" data-answer="wrong">面包</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">pescado</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('pescado', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/pesˈkaðo/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">肉</button><button class="option-btn" data-answer="correct">鱼</button><button class="option-btn" data-answer="wrong">蔬菜</button><button class="option-btn" data-answer="wrong">水果</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">manzanas</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('manzanas', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/manˈθanas/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">香蕉</button><button class="option-btn" data-answer="wrong">橙子</button><button class="option-btn" data-answer="correct">苹果</button><button class="option-btn" data-answer="wrong">梨</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">naranjas</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('naranjas', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/naˈɾanxas/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">苹果</button><button class="option-btn" data-answer="wrong">香蕉</button><button class="option-btn" data-answer="correct">橙子</button><button class="option-btn" data-answer="wrong">葡萄</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">lechuga</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('lechuga', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/leˈtʃuɣa/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">番茄</button><button class="option-btn" data-answer="wrong">土豆</button><button class="option-btn" data-answer="correct">生菜</button><button class="option-btn" data-answer="wrong">胡萝卜</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">embutidos</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('embutidos', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/embutiˈðos/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">奶制品</button><button class="option-btn" data-answer="correct">肉制品</button><button class="option-btn" data-answer="wrong">面包</button><button class="option-btn" data-answer="wrong">水果</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">jamón</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('jamón', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/xaˈmon/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">奶酪</button><button class="option-btn" data-answer="correct">火腿</button><button class="option-btn" data-answer="wrong">香肠</button><button class="option-btn" data-answer="wrong">面包</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">panadería</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('panadería', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/panadeˈɾia/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">超市</button><button class="option-btn" data-answer="correct">面包店</button><button class="option-btn" data-answer="wrong">肉店</button><button class="option-btn" data-answer="wrong">水果店</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-title">Traducción</span>
+            </div>
+            <div class="translation-text">
+                这个星期六我和妈妈去了市场。市场在我家附近，非常大。有很多卖水果、蔬菜、肉和鱼的摊位。<br><br>首先我们在水果摊买了苹果、橙子和香蕉。然后我们去蔬菜摊买了生菜、番茄和土豆。我妈妈还买了晚饭用的肉。<br><br>之后，我们经过肉制品摊，买了火腿和奶酪。最后，我们在面包店买了新鲜面包。市场非常热闹，我非常喜欢去那里。
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <span class="section-title">Gramática</span>
+            </div>
+            <div class="grammar-tips">
+                <h4>Notas</h4>
+                <ul>
+                    <li><strong>Fui</strong> 是动词 <em>ir</em> 的简单过去时第一人称变位，表示"我去了"</li>
+<li><strong>Compramos</strong> 是动词 <em>comprar</em> 的第一人称复数变位，表示"我们买了"</li>
+<li><strong>Pasamos</strong> 是动词 <em>pasar</em> 的第一人称复数变位，表示"我们经过"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <span class="section-title">Oral</span>
+            </div>
+            <div class="speaking-section">
+                
+                <div class="speaking-question">
+                    <div class="question-label">Pregunta 1</div>
+                    <div class="question-text">¿Qué compras en el mercado?</div>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Ver respuesta</button>
+                    <div class="answer-text">En el mercado compro frutas, verduras y pan.</div>
+                </div>
+                <div class="speaking-question">
+                    <div class="question-label">Pregunta 2</div>
+                    <div class="question-text">¿Te gusta ir al mercado?</div>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Ver respuesta</button>
+                    <div class="answer-text">Sí, me gusta mucho ir al mercado porque es muy animado.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="stat-item">
+                <span class="stat-value">12</span>
+                <span class="stat-label">Palabras</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">A1+</span>
+                <span class="stat-label">Nivel</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">754</span>
+                <span class="stat-label">A1 Target</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">5954</span>
+                <span class="stat-label">B2 Target</span>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="location.href='day_2.html'" >Anterior</button>
+            <a href="cover.html" class="nav-btn" style="text-decoration: none;">Portada</a>
+            <button class="nav-btn next" onclick="location.href='day_4.html'" >Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        const optionBtns = document.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const vocabItem = this.closest('.vocab-item');
+                const options = vocabItem.querySelectorAll('.option-btn');
+                options.forEach(opt => { opt.classList.remove('selected', 'correct', 'wrong'); });
+                this.classList.add('selected');
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    options.forEach(opt => { opt.disabled = true; });
+                } else {
+                    this.classList.add('wrong');
+                }
+            });
+        });
+
+        function toggleAnswer(btn) {
+            const answerText = btn.nextElementSibling;
+            if (answerText.classList.contains('show')) {
+                answerText.classList.remove('show');
+                btn.textContent = 'Ver respuesta';
+            } else {
+                answerText.classList.add('show');
+                btn.textContent = 'Ocultar';
+            }
+        }
+
+        function playAudio(word, lang) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = lang;
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>

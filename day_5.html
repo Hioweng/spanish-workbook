@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西班牙语练习册 - Day 5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --charcoal: #2c2c2c;
+            --grey: #6b6b6b;
+            --light-grey: #e8e4db;
+            --accent: #8b3a3a;
+            --paper: #faf8f3;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Serif SC', Georgia, serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .header {
+            padding: 50px 40px 30px;
+            border-bottom: 1px solid var(--light-grey);
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+        }
+        .day-badge {
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            color: var(--grey);
+            text-transform: uppercase;
+            border: 1px solid var(--light-grey);
+            padding: 4px 12px;
+        }
+        .level-badge {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.02em; }
+        .header p { font-size: 14px; color: var(--grey); font-style: italic; }
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: var(--light-grey);
+            margin-top: 25px;
+            position: relative;
+        }
+        .progress-fill {
+            width: 1.17%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.8s ease;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -3px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .content-section {
+            padding: 40px;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .content-section:last-of-type { border-bottom: none; }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .section-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-title {
+            font-size: 15px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        .article-text {
+            font-size: 16px;
+            text-align: justify;
+            color: var(--charcoal);
+        }
+        .article-text p { margin-bottom: 18px; }
+        .article-text p:last-child { margin-bottom: 0; }
+        .vocab-list { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .vocab-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .vocab-item:last-child { border-bottom: none; }
+        .vocab-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .vocab-word { font-size: 16px; font-weight: 600; color: var(--charcoal); }
+        .vocab-pos {
+            font-size: 11px;
+            color: var(--grey);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: var(--light-grey);
+            padding: 2px 6px;
+        }
+        .vocab-pronunciation { font-size: 13px; color: var(--grey); font-style: italic; }
+        .play-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .play-btn:hover { border-color: var(--accent); background: rgba(139,58,58,0.05); }
+        .play-btn svg { width: 10px; height: 10px; fill: var(--grey); }
+        .play-btn:hover svg { fill: var(--accent); }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .option-btn {
+            padding: 12px 16px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--charcoal);
+            text-align: left;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .option-btn:hover { border-color: var(--accent); background: rgba(139,58,58,0.03); }
+        .option-btn.selected { border-color: var(--accent); background: rgba(139,58,58,0.05); }
+        .option-btn.correct { border-color: #5a7a5a; background: rgba(90,122,90,0.08); color: #4a6a4a; }
+        .option-btn.wrong { border-color: var(--accent); background: rgba(139,58,58,0.08); color: var(--accent); }
+        .option-btn:disabled { cursor: default; }
+        .translation-text {
+            font-size: 15px;
+            color: var(--grey);
+            line-height: 1.9;
+            padding-left: 20px;
+            border-left: 2px solid var(--light-grey);
+        }
+        .grammar-tips { background: var(--cream); padding: 24px; }
+        .grammar-tips h4 {
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 16px;
+        }
+        .grammar-tips ul { list-style: none; padding-left: 0; }
+        .grammar-tips li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--charcoal);
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .grammar-tips li:last-child { border-bottom: none; }
+        .grammar-tips li strong { color: var(--accent); font-weight: 600; }
+        .speaking-section { background: var(--cream); padding: 24px; }
+        .speaking-question { margin-bottom: 28px; }
+        .speaking-question:last-child { margin-bottom: 0; }
+        .question-label {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 8px;
+        }
+        .question-text {
+            font-size: 15px;
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .answer-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            color: var(--grey);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .answer-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .answer-text {
+            margin-top: 14px;
+            padding: 16px;
+            background: var(--paper);
+            border-left: 2px solid var(--accent);
+            color: var(--charcoal);
+            font-size: 14px;
+            display: none;
+        }
+        .answer-text.show { display: block; }
+        .footer {
+            padding: 30px 40px;
+            background: var(--cream);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+        .nav-buttons {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--light-grey);
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            border: 1px solid var(--light-grey);
+            background: transparent;
+            color: var(--charcoal);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+        .nav-btn:disabled { opacity: 0.4; cursor: default; }
+        .nav-btn.next::after { content: ' →'; }
+        .nav-btn.prev::before { content: '← '; }
+        @media (max-width: 600px) {
+            body { padding: 20px 10px; }
+            .content-section { padding: 25px 20px; }
+            .header { padding: 30px 20px 20px; }
+            .options { grid-template-columns: 1fr; }
+            .footer { grid-template-columns: 1fr 1fr; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <span class="day-badge">Day 5</span>
+                <span class="level-badge">A1+</span>
+            </div>
+            <h1>Mi familia</h1>
+            <p>我的家庭</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <span class="section-title">Texto</span>
+            </div>
+            <div class="article-text">
+                <p>Vivo con mi familia en Madrid. Somos cinco personas: mi padre, mi madre, mi hermana mayor, mi hermano menor y yo.</p>
+<p>Mi padre se llama Carlos y trabaja como ingeniero. Mi madre se llama María y es maestra. Mi hermana, Ana, tiene 25 años y es médica. Mi hermano, Luis, tiene 12 años y es estudiante.</p>
+<p>Los fines de semana, siempre hacemos algo juntos. A veces vamos al parque, otras veces vemos una película en casa o salimos a comer. Me gusta mucho mi familia y pasamos mucho tiempo juntos.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <span class="section-title">Vocabulario</span>
+            </div>
+            <div class="vocab-list">
+                
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">familia</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('familia', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/faˈmiʎa/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">朋友</button><button class="option-btn" data-answer="correct">家庭</button><button class="option-btn" data-answer="wrong">同事</button><button class="option-btn" data-answer="wrong">邻居</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">padre</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('padre', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈpadɾe/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">母亲</button><button class="option-btn" data-answer="correct">父亲</button><button class="option-btn" data-answer="wrong">兄弟</button><button class="option-btn" data-answer="wrong">姐妹</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">madre</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('madre', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈmaðɾe/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">父亲</button><button class="option-btn" data-answer="correct">母亲</button><button class="option-btn" data-answer="wrong">兄弟</button><button class="option-btn" data-answer="wrong">姐妹</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">hermana</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('hermana', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/eɾˈmana/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">兄弟</button><button class="option-btn" data-answer="correct">姐妹</button><button class="option-btn" data-answer="wrong">父母</button><button class="option-btn" data-answer="wrong">孩子</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">hermano</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('hermano', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/eɾˈmano/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">姐妹</button><button class="option-btn" data-answer="correct">兄弟</button><button class="option-btn" data-answer="wrong">父母</button><button class="option-btn" data-answer="wrong">孩子</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">mayor</span>
+                        <span class="vocab-pos">adj.</span>
+                        <button class="play-btn" onclick="playAudio('mayor', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/maˈʝoɾ/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">年轻的</button><button class="option-btn" data-answer="correct">年长的</button><button class="option-btn" data-answer="wrong">小的</button><button class="option-btn" data-answer="wrong">大的</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">menor</span>
+                        <span class="vocab-pos">adj.</span>
+                        <button class="play-btn" onclick="playAudio('menor', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/meˈnoɾ/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">年长的</button><button class="option-btn" data-answer="correct">年幼的</button><button class="option-btn" data-answer="wrong">大的</button><button class="option-btn" data-answer="wrong">小的</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">ingeniero</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('ingeniero', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/inxeˈɲeɾo/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">医生</button><button class="option-btn" data-answer="wrong">教师</button><button class="option-btn" data-answer="correct">工程师</button><button class="option-btn" data-answer="wrong">律师</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">maestra</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('maestra', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/maˈestɾa/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">男教师</button><button class="option-btn" data-answer="correct">女教师</button><button class="option-btn" data-answer="wrong">护士</button><button class="option-btn" data-answer="wrong">医生</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">médica</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('médica', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈmeðika/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">男医生</button><button class="option-btn" data-answer="correct">女医生</button><button class="option-btn" data-answer="wrong">教师</button><button class="option-btn" data-answer="wrong">护士</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">fines</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('fines', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/ˈfines/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">工作日</button><button class="option-btn" data-answer="correct">周末</button><button class="option-btn" data-answer="wrong">假期</button><button class="option-btn" data-answer="wrong">节日</button>
+                    </div>
+                </div>
+
+                <div class="vocab-item">
+                    <div class="vocab-header">
+                        <span class="vocab-word">película</span>
+                        <span class="vocab-pos">n.</span>
+                        <button class="play-btn" onclick="playAudio('película', 'es-ES')" title="播放发音">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <span class="vocab-pronunciation">/peˈlikula/</span>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" data-answer="wrong">电视</button><button class="option-btn" data-answer="correct">电影</button><button class="option-btn" data-answer="wrong">书</button><button class="option-btn" data-answer="wrong">音乐</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-title">Traducción</span>
+            </div>
+            <div class="translation-text">
+                我和家人住在马德里。我们有五个人：我的父亲、母亲、姐姐、弟弟和我。<br><br>我父亲叫卡洛斯，是一名工程师。我母亲叫玛丽亚，是一名教师。我姐姐安娜25岁，是一名医生。我弟弟路易斯12岁，是一名学生。<br><br>周末，我们总是一起做些事情。有时我们去公园，有时在家看电影，或者出去吃饭。我非常喜欢我的家人，我们经常在一起。
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <span class="section-title">Gramática</span>
+            </div>
+            <div class="grammar-tips">
+                <h4>Notas</h4>
+                <ul>
+                    <li><strong>Somos</strong> 是动词 <em>ser</em> 的第一人称复数变位，表示"我们是"</li>
+<li><strong>Trabaja</strong> 是动词 <em>trabajar</em> 的第三人称单数变位，表示"他工作"</li>
+<li><strong>Tiene</strong> 是动词 <em>tener</em> 的第三人称单数变位，表示"他有"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <span class="section-title">Oral</span>
+            </div>
+            <div class="speaking-section">
+                
+                <div class="speaking-question">
+                    <div class="question-label">Pregunta 1</div>
+                    <div class="question-text">¿Cuántas personas hay en tu familia?</div>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Ver respuesta</button>
+                    <div class="answer-text">En mi familia hay cinco personas.</div>
+                </div>
+                <div class="speaking-question">
+                    <div class="question-label">Pregunta 2</div>
+                    <div class="question-text">¿Qué hacen los fines de semana?</div>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Ver respuesta</button>
+                    <div class="answer-text">Los fines de semana, vamos al parque o vemos películas.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="stat-item">
+                <span class="stat-value">12</span>
+                <span class="stat-label">Palabras</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">A1+</span>
+                <span class="stat-label">Nivel</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">730</span>
+                <span class="stat-label">A1 Target</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">5930</span>
+                <span class="stat-label">B2 Target</span>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="location.href='day_4.html'" >Anterior</button>
+            <a href="cover.html" class="nav-btn" style="text-decoration: none;">Portada</a>
+            <button class="nav-btn next" onclick="location.href='day_6.html'" >Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        const optionBtns = document.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const vocabItem = this.closest('.vocab-item');
+                const options = vocabItem.querySelectorAll('.option-btn');
+                options.forEach(opt => { opt.classList.remove('selected', 'correct', 'wrong'); });
+                this.classList.add('selected');
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    options.forEach(opt => { opt.disabled = true; });
+                } else {
+                    this.classList.add('wrong');
+                }
+            });
+        });
+
+        function toggleAnswer(btn) {
+            const answerText = btn.nextElementSibling;
+            if (answerText.classList.contains('show')) {
+                answerText.classList.remove('show');
+                btn.textContent = 'Ver respuesta';
+            } else {
+                answerText.classList.add('show');
+                btn.textContent = 'Ocultar';
+            }
+        }
+
+        function playAudio(word, lang) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = lang;
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
