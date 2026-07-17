@@ -158,6 +158,40 @@
             font-size: 12px;
             color: var(--grey);
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-grey);
+        }
+        .pagination-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+            font-family: 'Noto Serif SC', Georgia, serif;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+        }
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .pagination-info {
+            font-size: 13px;
+            color: var(--grey);
+            min-width: 100px;
+            text-align: center;
+        }
         .footer {
             padding: 40px;
             text-align: center;
@@ -199,193 +233,90 @@
                 <span class="toc-number">01</span>
                 <span class="toc-title">Contenidos</span>
             </div>
-            <ul class="toc-list">
-                <li class="toc-item">
-                    <span class="toc-day">Day 1</span>
-                    <a href="index.html" class="toc-link">Mi primera semana en Madrid</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">11词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 2</span>
-                    <a href="day_2.html" class="toc-link">Un día típico en la escuela</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 3</span>
-                    <a href="day_3.html" class="toc-link">Compras en el mercado</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 4</span>
-                    <a href="day_4.html" class="toc-link">Un viaje a Toledo</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 5</span>
-                    <a href="day_5.html" class="toc-link">Mi familia</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 6</span>
-                    <a href="day_6.html" class="toc-link">El tiempo y el clima</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 7</span>
-                    <a href="day_7.html" class="toc-link">Pasatiempos y hobbies</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 8</span>
-                    <a href="day_8.html" class="toc-link">Restaurantes y comida</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 9</span>
-                    <a href="day_9.html" class="toc-link">Transporte en la ciudad</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 10</span>
-                    <a href="day_10.html" class="toc-link">Celebraciones y festivales</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 11</span>
-                    <a href="day_11.html" class="toc-link">Mi rutina diaria</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 12</span>
-                    <a href="day_12.html" class="toc-link">El trabajo</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 13</span>
-                    <a href="day_13.html" class="toc-link">Mi apartamento</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 14</span>
-                    <a href="day_14.html" class="toc-link">La salud</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 15</span>
-                    <a href="day_15.html" class="toc-link">Los viajes</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 16</span>
-                    <a href="day_16.html" class="toc-link">Las compras</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 17</span>
-                    <a href="day_17.html" class="toc-link">La educación</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 18</span>
-                    <a href="day_18.html" class="toc-link">Los animales</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 19</span>
-                    <a href="day_19.html" class="toc-link">La música</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 20</span>
-                    <a href="day_20.html" class="toc-link">Los deportes</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 21</span>
-                    <a href="day_21.html" class="toc-link">Los libros y la lectura</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 22</span>
-                    <a href="day_22.html" class="toc-link">La tecnología</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 23</span>
-                    <a href="day_23.html" class="toc-link">La comida y la cocina</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 24</span>
-                    <a href="day_24.html" class="toc-link">La naturaleza</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 25</span>
-                    <a href="day_25.html" class="toc-link">La cultura</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 26</span>
-                    <a href="day_26.html" class="toc-link">Los amigos</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 27</span>
-                    <a href="day_27.html" class="toc-link">Los planes</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 28</span>
-                    <a href="day_28.html" class="toc-link">La felicidad</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 29</span>
-                    <a href="day_29.html" class="toc-link">El tiempo</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-                <li class="toc-item">
-                    <span class="toc-day">Day 30</span>
-                    <a href="day_30.html" class="toc-link">Mi vida en Madrid</a>
-                    <span class="toc-level">A1+</span>
-                    <span class="toc-wordcount">12词</span>
-                </li>
-            </ul>
+            <ul class="toc-list" id="tocList"></ul>
+            
+            <div class="pagination">
+                <button class="pagination-btn" id="prevPage" onclick="changePage(-1)" disabled>上一页</button>
+                <span class="pagination-info" id="pageInfo">第 1 / 1 页</span>
+                <button class="pagination-btn" id="nextPage" onclick="changePage(1)" disabled>下一页</button>
+            </div>
         </div>
 
         <div class="footer">
             <p class="footer-text">每天一篇，坚持一年，轻松达到B2水平</p>
         </div>
     </div>
+
+    <script>
+        const days = [
+            { day: 1, title: 'Mi primera semana en Madrid', level: 'A1+', words: 11, file: 'index.html' },
+            { day: 2, title: 'Un día típico en la escuela', level: 'A1+', words: 12, file: 'day_2.html' },
+            { day: 3, title: 'Compras en el mercado', level: 'A1+', words: 12, file: 'day_3.html' },
+            { day: 4, title: 'Un viaje a Toledo', level: 'A1+', words: 12, file: 'day_4.html' },
+            { day: 5, title: 'Mi familia', level: 'A1+', words: 12, file: 'day_5.html' },
+            { day: 6, title: 'El tiempo y el clima', level: 'A1+', words: 12, file: 'day_6.html' },
+            { day: 7, title: 'Pasatiempos y hobbies', level: 'A1+', words: 12, file: 'day_7.html' },
+            { day: 8, title: 'Restaurantes y comida', level: 'A1+', words: 12, file: 'day_8.html' },
+            { day: 9, title: 'Transporte en la ciudad', level: 'A1+', words: 12, file: 'day_9.html' },
+            { day: 10, title: 'Celebraciones y festivales', level: 'A1+', words: 12, file: 'day_10.html' },
+            { day: 11, title: 'Mi rutina diaria', level: 'A1+', words: 12, file: 'day_11.html' },
+            { day: 12, title: 'El trabajo', level: 'A1+', words: 12, file: 'day_12.html' },
+            { day: 13, title: 'Mi apartamento', level: 'A1+', words: 12, file: 'day_13.html' },
+            { day: 14, title: 'La salud', level: 'A1+', words: 12, file: 'day_14.html' },
+            { day: 15, title: 'Los viajes', level: 'A1+', words: 12, file: 'day_15.html' },
+            { day: 16, title: 'Las compras', level: 'A1+', words: 12, file: 'day_16.html' },
+            { day: 17, title: 'La educación', level: 'A1+', words: 12, file: 'day_17.html' },
+            { day: 18, title: 'Los animales', level: 'A1+', words: 12, file: 'day_18.html' },
+            { day: 19, title: 'La música', level: 'A1+', words: 12, file: 'day_19.html' },
+            { day: 20, title: 'Los deportes', level: 'A1+', words: 12, file: 'day_20.html' },
+            { day: 21, title: 'Los libros y la lectura', level: 'A1+', words: 12, file: 'day_21.html' },
+            { day: 22, title: 'La tecnología', level: 'A1+', words: 12, file: 'day_22.html' },
+            { day: 23, title: 'La comida y la cocina', level: 'A1+', words: 12, file: 'day_23.html' },
+            { day: 24, title: 'La naturaleza', level: 'A1+', words: 12, file: 'day_24.html' },
+            { day: 25, title: 'La cultura', level: 'A1+', words: 12, file: 'day_25.html' },
+            { day: 26, title: 'Los amigos', level: 'A1+', words: 12, file: 'day_26.html' },
+            { day: 27, title: 'Los planes', level: 'A1+', words: 12, file: 'day_27.html' },
+            { day: 28, title: 'La felicidad', level: 'A1+', words: 12, file: 'day_28.html' },
+            { day: 29, title: 'El tiempo', level: 'A1+', words: 12, file: 'day_29.html' },
+            { day: 30, title: 'Mi vida en Madrid', level: 'A1+', words: 12, file: 'day_30.html' },
+        ];
+
+        const itemsPerPage = 30;
+        let currentPage = 1;
+
+        function renderPage() {
+            const totalPages = Math.ceil(days.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, days.length);
+            const pageDays = days.slice(startIndex, endIndex);
+
+            const tocList = document.getElementById('tocList');
+            tocList.innerHTML = '';
+
+            pageDays.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                li.innerHTML = `
+                    <span class="toc-day">Day ${item.day}</span>
+                    <a href="${item.file}" class="toc-link">${item.title}</a>
+                    <span class="toc-level">${item.level}</span>
+                    <span class="toc-wordcount">${item.words}词</span>
+                `;
+                tocList.appendChild(li);
+            });
+
+            document.getElementById('pageInfo').textContent = `第 ${currentPage} / ${totalPages} 页`;
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+        }
+
+        function changePage(delta) {
+            const totalPages = Math.ceil(days.length / itemsPerPage);
+            currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+            renderPage();
+        }
+
+        renderPage();
+    </script>
 </body>
 </html>
