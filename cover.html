@@ -213,15 +213,15 @@
             <div class="cover-accent"></div>
             <div class="cover-stats">
                 <div class="stat-box">
-                    <span class="stat-number">365</span>
+                    <span class="stat-number">90</span>
                     <span class="stat-label">Días</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number">6000</span>
+                    <span class="stat-number">1080</span>
                     <span class="stat-label">Palabras</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number">B2</span>
+                    <span class="stat-number">A2</span>
                     <span class="stat-label">Nivel</span>
                 </div>
             </div>
@@ -237,8 +237,8 @@
             
             <div class="pagination">
                 <button class="pagination-btn" id="prevPage" onclick="changePage(-1)" disabled>上一页</button>
-                <span class="pagination-info" id="pageInfo">第 1 / 1 页</span>
-                <button class="pagination-btn" id="nextPage" onclick="changePage(1)" disabled>下一页</button>
+                <span class="pagination-info" id="pageInfo">第 1 / 3 页</span>
+                <button class="pagination-btn" id="nextPage" onclick="changePage(1)">下一页</button>
             </div>
         </div>
 
@@ -329,16 +329,16 @@
             { day: 78, title: 'La vida en comunidad', level: 'A2', words: 12, file: 'day_78.html' },
             { day: 79, title: 'La música electrónica', level: 'A2', words: 12, file: 'day_79.html' },
             { day: 80, title: 'La creatividad', level: 'A2', words: 12, file: 'day_80.html' },
-            { day: 81, title: 'La salud mental', level: 'A2', words: 12, file: 'day_81.html' },
-            { day: 82, title: 'La educación online', level: 'A2', words: 12, file: 'day_82.html' },
+            { day: 81, title: 'Mindfulness y meditación', level: 'A2', words: 12, file: 'day_81.html' },
+            { day: 82, title: 'Aprendizaje autónomo', level: 'A2', words: 12, file: 'day_82.html' },
             { day: 83, title: 'Los viajes sostenibles', level: 'A2', words: 12, file: 'day_83.html' },
             { day: 84, title: 'La gastronomía fusion', level: 'A2', words: 12, file: 'day_84.html' },
             { day: 85, title: 'La fotografía de retrato', level: 'A2', words: 12, file: 'day_85.html' },
             { day: 86, title: 'La ciencia ficción', level: 'A2', words: 12, file: 'day_86.html' },
-            { day: 87, title: 'La música clásica', level: 'A2', words: 12, file: 'day_87.html' },
+            { day: 87, title: 'La ópera', level: 'A2', words: 12, file: 'day_87.html' },
             { day: 88, title: 'La moda sostenible', level: 'A2', words: 12, file: 'day_88.html' },
             { day: 89, title: 'La astronomía', level: 'A2', words: 12, file: 'day_89.html' },
-            { day: 90, title: 'Mi viaje de un año', level: 'A2', words: 12, file: 'day_90.html' },
+            { day: 90, title: 'Mi viaje de un año', level: 'A2', words: 12, file: 'day_90.html' }
         ];
 
         const itemsPerPage = 30;
@@ -365,7 +365,7 @@
                 tocList.appendChild(li);
             });
 
-            document.getElementById('pageInfo').textContent = `第 ${currentPage} / ${totalPages} 页`;
+            document.getElementById('pageInfo').textContent = '第 ' + currentPage + ' / ' + totalPages + ' 页';
             document.getElementById('prevPage').disabled = currentPage === 1;
             document.getElementById('nextPage').disabled = currentPage === totalPages;
         }
